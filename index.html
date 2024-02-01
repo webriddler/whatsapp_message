@@ -7,6 +7,7 @@
   <title>Whatsapp Handler</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/simplex/bootstrap.min.css" integrity="sha384-FYrl2Nk72fpV6+l3Bymt1zZhnQFK75ipDqPXK0sOR0f/zeOSZ45/tKlsKucQyjSp" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -14,33 +15,34 @@
     <a class="navbar-brand text-white" href="">Send Message Whatsapp <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
   </nav>
   <div class="container">
-    <form method="GET" action="https://api.whatsapp.com/send?">
+    <form id="whatsappForm" method="GET" action="https://api.whatsapp.com/send?" onsubmit="prepareAndSubmit()">
+      <input type="hidden" name="phone" id="phoneNumber" value="0" />
       <div class="form-group">
-        <label for="exampleInputName1" class="form-label mt-2">Contact Number</label>
-        <input type="text" id="exampleInputName1" class="form-control" value="91" name="phone" />
+        <label for="typedNumber" class="form-label mt-2">Contact Number</label>
+        <input type="text" id="typedNumber" class="form-control" name="typedNumber" />
       </div>
-<!-- 
-      <div class="form-group">
-        <label for="exampleInputEmail1" class="form-label mt-2">Email Address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo isset($_POST['emailAddress']) ? $email : '' ?>" name="emailAddress" />
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div> -->
-
       <div class="form-group">
         <label for="exampleTextarea" class="form-label mt-2">Type Message</label>
         <textarea required class="form-control" id="exampleTextarea" rows="6" spellcheck="true" name="text"></textarea>
       </div>
-
-      <button type="submit" class="btn mt-2" name="submit" style="background-color: #dde2e4 !important;">
+  
+      <button type="submit" class="btn mt-2" style="background-color: #dde2e4 !important;">
         Chat on <i class="fa fa-whatsapp" aria-hidden="true"></i>
       </button>
     </form>
+  
   </div>
   <script>
-    if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
+    function prepareAndSubmit() {
+      var phoneNumberInput = $('#typedNumber');
+      var phoneNumberHidden = $('#phoneNumber');
+      var countryCode = '+91'; // Replace with your desired country code
+
+      phoneNumberHidden.val(countryCode + phoneNumberInput.val());
+      return true;
     }
   </script>
+  
 </body>
 
 </html>

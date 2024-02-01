@@ -9,13 +9,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <style>
-    .form-group{
+    .form-group, label{
       font-size: 15px;
       font-family: cursive;
     }
     button {
        font-size: 14px;
     }
+    
   </style>
 </head>
 
@@ -26,14 +27,18 @@
   <div class="container">
     <form id="whatsappForm" method="GET" action="https://api.whatsapp.com/send?" onsubmit="prepareAndSubmit()">
       <input type="hidden" name="phone" id="phoneNumber" value="0" />
-      <div class="form-group">
-        <label for="typedNumber" class="form-label mt-2">Contact Number</label>
-        <input type="text" id="typedNumber" class="form-control" name="typedNumber" required />
+      <label for="typedNumber" class="form-label mt-2">Contact Number</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">+91</span>
+        </div>
+        <input type="number" id="typedNumber" class="form-control" onkeyup="fixedWithCharacters(this, 10);" name="typedNumber" required />
       </div>
       <div class="form-group">
         <label for="exampleTextarea" class="form-label mt-2">Type Message</label>
-        <textarea required class="form-control" id="exampleTextarea" rows="6" spellcheck="true" name="text"></textarea>
+        <textarea required class="form-control" id="exampleTextarea" rows="6" spellcheck="true" name="text" onkeyup="countChar(this)"></textarea>
       </div>
+      <p class="text-muted small" id="charCount">Characters remains: 150 / 0</p>
   
       <button type="submit" class="btn btn-primary mt-2">
         Connect on <i class="fa fa-whatsapp" aria-hidden="true"></i>
@@ -50,6 +55,21 @@
       phoneNumberHidden.val(countryCode + phoneNumberInput.val());
       return true;
     }
+    function fixedWithCharacters(val, givenLen) {
+      var len = val.value.length;
+      if (len >= givenLen) {
+        val.value = val.value.substring(0, givenLen);
+      }
+    }
+    function countChar(val) {
+      var len = val.value.length;
+      if (len >= 150) {
+        val.value = val.value.substring(0, 150);
+      } else {
+        var message = `Characters remains 150 / ${len}`;
+        $('#charCount').text(message);
+      }
+    };
   </script>
   
 </body>

@@ -8,6 +8,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/simplex/bootstrap.min.css" integrity="sha384-FYrl2Nk72fpV6+l3Bymt1zZhnQFK75ipDqPXK0sOR0f/zeOSZ45/tKlsKucQyjSp" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    .form-group{
+      font-size: 15px;
+      font-family: cursive;
+    }
+    button {
+       font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,7 +28,7 @@
       <input type="hidden" name="phone" id="phoneNumber" value="0" />
       <div class="form-group">
         <label for="typedNumber" class="form-label mt-2">Contact Number</label>
-        <input type="text" id="typedNumber" class="form-control" name="typedNumber" />
+        <input type="text" id="typedNumber" class="form-control" name="typedNumber" required />
       </div>
       <div class="form-group">
         <label for="exampleTextarea" class="form-label mt-2">Type Message</label>
@@ -27,7 +36,7 @@
       </div>
   
       <button type="submit" class="btn btn-primary mt-2">
-        Chat on <i class="fa fa-whatsapp" aria-hidden="true"></i>
+        Connect on <i class="fa fa-whatsapp" aria-hidden="true"></i>
       </button>
     </form>
   

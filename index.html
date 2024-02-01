@@ -30,6 +30,14 @@
       background: inherit;
       color: #54656f;
     }
+    .message {
+      margin-top: 10px;
+      padding: 1rem;
+      font-size: 14px;
+      font-style: italic;
+      font-family: sans-serif;
+      border-left: 2px solid grey;
+    }
   </style>
 </head>
 
@@ -38,6 +46,7 @@
     <a class="navbar-brand text-white" href="">Direct WhatsApp <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
   </nav>
   <div class="container">
+    <p class="message">Connect with anyone on WhatsApp without saving their number!</p>
     <form id="whatsappForm" method="GET" action="https://api.whatsapp.com/send?" onsubmit="prepareAndSubmit()">
       <input type="hidden" name="phone" id="phoneNumber" value="0" />
       <label for="typedNumber" class="form-label mt-2">Contact Number</label>

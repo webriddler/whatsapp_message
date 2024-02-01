@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Whatsapp Handler</title>
+  <title>Direct WhatsApp</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/simplex/bootstrap.min.css" integrity="sha384-FYrl2Nk72fpV6+l3Bymt1zZhnQFK75ipDqPXK0sOR0f/zeOSZ45/tKlsKucQyjSp" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -16,13 +16,12 @@
     button {
        font-size: 14px;
     }
-    
   </style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg bg-dark mb-2" style="background-color: #00a884 !important;">
-    <a class="navbar-brand text-white" href="">Direct Whatsapp <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+    <a class="navbar-brand text-white" href="">Direct WhatsApp <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
   </nav>
   <div class="container">
     <form id="whatsappForm" method="GET" action="https://api.whatsapp.com/send?" onsubmit="prepareAndSubmit()">
@@ -32,13 +31,13 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">+91</span>
         </div>
-        <input type="number" id="typedNumber" class="form-control" onkeyup="fixedWithCharacters(this, 10);" name="typedNumber" required />
+        <input type="number" id="typedNumber" class="form-control" onkeyup="fixedWithCharacters(this, 10);" name="typedNumber" required style="height: 38px;" />
       </div>
       <div class="form-group">
         <label for="exampleTextarea" class="form-label mt-2">Type Message</label>
         <textarea required class="form-control" id="exampleTextarea" rows="6" spellcheck="true" name="text" onkeyup="countChar(this)"></textarea>
       </div>
-      <p class="text-muted small" id="charCount">Characters remains: 150 / 0</p>
+      <p class="text-muted small" id="charCount">Character remains: 150 / 0</p>
   
       <button type="submit" class="btn btn-primary mt-2">
         Connect on <i class="fa fa-whatsapp" aria-hidden="true"></i>

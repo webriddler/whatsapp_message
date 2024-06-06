@@ -49,18 +49,20 @@
     <p class="message">Connect with anyone on WhatsApp without saving their number!</p>
     <form id="whatsappForm" method="GET" action="https://api.whatsapp.com/send?" onsubmit="prepareAndSubmit()">
       <input type="hidden" name="phone" id="phoneNumber" value="0" />
+      
       <label for="typedNumber" class="form-label mt-2">Contact Number</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">+91</span>
+          <input type="number" id="countryCode" class="form-control" onkeyup="fixedWithCharacters(this, 2);" name="countryCode" required style="height: 38px; width: 70px;border-radius: 0.25rem 0px 0px 0.25rem;" value="91" placeholder="00" />
         </div>
-        <input type="number" id="typedNumber" class="form-control" onkeyup="fixedWithCharacters(this, 10);" name="typedNumber" required style="height: 38px;" />
+        <input type="number" id="typedNumber" class="form-control" onkeyup="fixedWithCharacters(this, 10);" name="typedNumber" required style="height: 38px;" placeholder="Phone Number" />
       </div>
+
       <div class="form-group">
         <label for="exampleTextarea" class="form-label mt-2">Type Message</label>
         <textarea required class="form-control" id="exampleTextarea" rows="6" spellcheck="true" name="text" onkeyup="countChar(this)"></textarea>
       </div>
-      <p class="text-muted small" id="charCount">Character remains: 150 / 0</p>
+      <p class="text-muted small" id="charCount">Characters remains: 150 / 0</p>
   
       <button type="submit" class="btn btn-primary mt-2">
         Connect on <i class="fa fa-whatsapp" aria-hidden="true"></i>
@@ -73,19 +75,24 @@
   </footer>
   <script>
     function prepareAndSubmit() {
+      var countryCodeInput = $('#countryCode');
       var phoneNumberInput = $('#typedNumber');
       var phoneNumberHidden = $('#phoneNumber');
-      var countryCode = '+91'; // Replace with your desired country code
-
-      phoneNumberHidden.val(countryCode + phoneNumberInput.val());
+      var countryCode = countryCodeInput.val();
+      if (countryCode.length === 1) {
+        countryCode = '0' + countryCode;
+      }
+      phoneNumberHidden.val('+' + countryCodeInput.val() + phoneNumberInput.val());
       return true;
     }
+
     function fixedWithCharacters(val, givenLen) {
       var len = val.value.length;
       if (len >= givenLen) {
         val.value = val.value.substring(0, givenLen);
       }
     }
+
     function countChar(val) {
       var len = val.value.length;
       if (len >= 150) {
@@ -94,9 +101,8 @@
         var message = `Characters remains 150 / ${len}`;
         $('#charCount').text(message);
       }
-    };
+    }
   </script>
   
 </body>
-
 </html>
